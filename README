@@ -1,0 +1,36 @@
+
+PHP library implementing:
+
+ * HOTP: An HMAC-Based One-Time Password Algorithm (RFC4226)
+ * TOTP: Time-Based One-Time Password Algorithm (RFC6238)
+
+Features:
+
+ * Compliant with RFC4226 and RFC6238 test vectors (included)
+ * Core functions should be architecture independant (endian safe)
+ * Check functions should be constant time (so timing sidechannel safe)
+
+Typical configurations:
+
+ * Low Security:    SHA1 algo,  80bit key, 6 digit output (Google Authenticator)
+ * Medium Security: SHA1 algo, 160bit key, 6 digit output
+ * High Security: SHA256 algo, 256bit key, 8 digit output (FreeOTP)
+
+Parameters:
+
+ $algo, while any valid hash-hmac-algos can be used, most practical
+ implementations support only SHA1, and a few additionally support
+ SHA256 and SHA512.
+
+ $key, while any arbitrary key size is possible, using a key size
+ identical to the hash algorithms output size is a good guideline.
+
+ $key, should be supplied as a binary string, most typically by
+ decoding a base32 encoded key string.
+
+ $length, while any output length between 1 and 10 is possible, most
+ practical implementations support only 6, and a few additionally
+ support 8.
+
+
+

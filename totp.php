@@ -28,7 +28,7 @@ function totp (string $algo, string $key, int $unixtime, int $interval = 30, int
 
 
 
-function hotp_token_ok (string $algo, string $key, string $token, int $count, int $window = 10, int $length = 6)
+function hotp_token_ok (string $token, string $algo, string $key, int $count, int $window = 10, int $length = 6)
 {
   $ok = FALSE;
 
@@ -41,7 +41,7 @@ function hotp_token_ok (string $algo, string $key, string $token, int $count, in
 }
 
 
-function totp_token_ok (string $algo, string $key, string $token, int $unixtime, int $window = 300, int $interval = 30, int $length = 6)
+function totp_token_ok (string $token, string $algo, string $key, int $unixtime, int $window = 300, int $interval = 30, int $length = 6)
 {
   return hotp_token_ok($algo, $key, $token, intdiv($unixtime, $interval), intdiv($window, $interval), $length);
 }
